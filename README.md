@@ -1,0 +1,1 @@
+Repository to explore how to manually simulate an higher kinded type in Kotlin
