@@ -13,7 +13,7 @@ class FunctorTest {
     fun `mapping over an non empty option`() {
         val nonEmptyOption: Option<Int> = Option.just(3)
 
-        val actual = Option.functor<Int>().map(increment, nonEmptyOption).fix()
+        val actual = Option.functor.map(increment, nonEmptyOption).fix()
 
         assertThat(actual, equalTo(Option.just(4)))
     }
@@ -22,8 +22,26 @@ class FunctorTest {
     fun `mapping over an empty option`() {
         val empty = Option.none<Int>()
 
-        val actual = Option.functor<Int>().map(increment, empty).fix()
+        val actual = Option.functor.map(increment, empty).fix()
 
         assertThat(actual, equalTo(empty))
+    }
+
+    @Test
+    fun `mapping over a success try`() {
+        val success = Try.attempt { 6 }
+
+        val actual = Try.functor.map(increment, success).fix()
+
+        assertThat(actual, equalTo(Try.attempt { 7 }))
+    }
+
+    @Test
+    fun `mapping over a failure try`() {
+        val failure: Try<Int> = Try.attempt { throw RuntimeException("BOOM!") }
+
+        val actual = Try.functor.map(increment, failure).fix()
+
+        assertThat(actual, equalTo(failure))
     }
 }

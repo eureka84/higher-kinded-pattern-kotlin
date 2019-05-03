@@ -14,7 +14,8 @@ sealed class Option<out A>: Kind<ForOption, A> {
     }
 
     companion object {
-        fun <A> functor(): Functor<ForOption> = object : Functor<ForOption> {
+
+        val functor: Functor<ForOption> = object : Functor<ForOption> {
             override fun <A, B> map(f: (A) -> B, fa: Kind<ForOption, A>): Kind<ForOption, B>  = fa.fix().map(f)
         }
 
