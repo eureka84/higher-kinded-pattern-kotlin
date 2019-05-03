@@ -6,7 +6,7 @@ import org.junit.Test
 
 class FunctorTest {
 
-    val increment: (Int) -> Int = { i -> i + 1 }
+    private val increment: (Int) -> Int = { i -> i + 1 }
 
 
     @Test
