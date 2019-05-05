@@ -1,5 +1,8 @@
 package com.eureka
 
+import com.eureka.lib.Option
+import com.eureka.lib.Try
+import com.eureka.lib.fix
 import org.hamcrest.CoreMatchers.equalTo
 import org.junit.Assert.assertThat
 import org.junit.Test

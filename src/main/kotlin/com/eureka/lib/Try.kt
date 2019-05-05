@@ -1,4 +1,4 @@
-package com.eureka
+package com.eureka.lib
 
 class ForTry {
     companion object
@@ -14,7 +14,6 @@ sealed class Try<out A> : TryOf<A> {
     }
 
     companion object {
-
         val functor: Functor<ForTry> = object : Functor<ForTry> {
             override fun <A, B> map(f: (A) -> B, fa: Kind<ForTry, A>): Kind<ForTry, B> = fa.fix().map(f)
         }
