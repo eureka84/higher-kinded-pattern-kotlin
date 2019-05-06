@@ -32,5 +32,21 @@ class FunctorUsageTest {
         assertThat(result, equalTo(Try.attempt { 9.0 }))
     }
 
+    @Test
+    fun `arithmetic on failing try`() {
+        val program = object : ArithmeticWithEffects<ForTry, Double> {
+            override val f: Functor<ForTry> = Try.functor
+            override val n: Num<Double> = Num.double
+        }
+
+        val runtimeException = RuntimeException("BOOM!")
+
+        val result = program.square(Try.attempt { throw runtimeException }).fix()
+
+        val expected: Try<Double> = Failure(runtimeException)
+
+        assertThat(result, equalTo(expected))
+    }
+
 }
 
