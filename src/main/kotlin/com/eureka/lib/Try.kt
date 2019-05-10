@@ -1,8 +1,6 @@
 package com.eureka.lib
 
-class ForTry {
-    companion object
-}
+class ForTry
 typealias TryOf<A> = Kind<ForTry, A>
 fun <A> TryOf<A>.fix() = this as Try<A>
 

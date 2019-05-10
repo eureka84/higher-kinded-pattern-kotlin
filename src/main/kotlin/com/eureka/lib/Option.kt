@@ -1,8 +1,6 @@
 package com.eureka.lib
 
-class ForOption {
-    companion object
-}
+class ForOption
 typealias OptionOf<A> = Kind<ForOption, A>
 fun <A> OptionOf<A>.fix(): Option<A> = this as Option<A>
 
